@@ -1,0 +1,21 @@
+{
+	"name"				: "trans-interpolator"
+,	"description"		: "String interpolation with variable transposition!"
+,	"version"			: "0.2.4"
+,	"author"			: { "name": "nfour" }
+
+,	"dependencies": {
+		"transposer" : "0.3.x"
+	}
+,	"devDependencies": {
+		"nodeunit": "^0.9.0"
+	}
+	
+,	"scripts": {
+		"build"		: "cake build"
+	,	"test"		: "npm run build && nodeunit ./test"
+	,	"publicate"	: "npm run build && npm publish"
+	}
+
+,	"main": "./TransInterpolator"
+}
