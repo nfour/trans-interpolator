@@ -1,8 +1,12 @@
 {
 	"name"				: "trans-interpolator"
 ,	"description"		: "String interpolation with variable transposition!"
-,	"version"			: "0.2.4"
+,	"version"			: "0.2.5"
 ,	"author"			: { "name": "nfour" }
+,	"repository"		: {
+		"type": "git",
+		"url": "https://github.com/nfour/trans-interpolator"
+	}
 
 ,	"dependencies": {
 		"transposer" : "0.3.x"
