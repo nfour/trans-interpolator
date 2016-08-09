@@ -1,25 +1,26 @@
 {
-	"name"				: "trans-interpolator"
-,	"description"		: "String interpolation with variable transposition!"
-,	"version"			: "0.2.5"
-,	"author"			: { "name": "nfour" }
-,	"repository"		: {
-		"type": "git",
-		"url": "https://github.com/nfour/trans-interpolator"
-	}
+    "name"        : "trans-interpolator",
+    "description" : "String interpolation with variable transposition!",
+    "version"     : "1.0.0",
+    "author"      : {
+        "name": "nfour"
+    },
+    "repository": {
+        "type" : "git",
+        "url"  : "https://github.com/nfour/trans-interpolator"
+    },
+    "dependencies": {
+        "transposer": "~0.3.5"
+    },
+    "devDependencies": {
+        "nodeunit": "^0.9.0"
+    },
+    "scripts": {
+        "build"      : "cake build",
+        "test"       : "npm run build && nodeunit dist/test",
+        "prepublish" : "npm test"
+    },
+    "main": "./dist/TransInterpolator",
 
-,	"dependencies": {
-		"transposer" : "0.3.x"
-	}
-,	"devDependencies": {
-		"nodeunit": "^0.9.0"
-	}
-	
-,	"scripts": {
-		"build"		: "cake build"
-	,	"test"		: "npm run build && nodeunit ./test"
-	,	"publicate"	: "npm run build && npm publish"
-	}
-
-,	"main": "./TransInterpolator"
+    "keywords": [ "interpolate", "interpolation", "template", "string", "variable", "pointer", "reference", "recursive", "calculator" ]
 }
