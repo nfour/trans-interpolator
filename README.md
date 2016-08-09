@@ -11,7 +11,7 @@ const interp = new TransInterpolator({
     ]
 })
 
-interpolator.interpolate("Total price: $${ some[0]['!data!'].please }.")
+interpolator.interpolate("Total price: $${ some[0]['!data!'] }.")
 // returns "Total Price: $5000."
 ```
 
