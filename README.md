@@ -11,8 +11,8 @@ const interp = new TransInterpolator({
     ]
 })
 
-interpolator.interpolate("Total price: $${ some[0]['!data!'] }.")
-// returns "Total Price: $5000."
+interpolator.interpolate("Total: ${ some[0]['!data!'] }.")
+// returns "Total: 5000."
 ```
 
 It's also rescursive.
@@ -26,12 +26,14 @@ const interp = new TransInterp({
     expressions: {
         a: '${price}',                      // 5000
         b: '${expressions.a} * 1.5 / 2',    // 3750
-        c: '${expressions.b} - ${getOne}', // 3749
+        c: '${expressions.b} - ${getOne}',  // 3749
     },
-    getOne: () => "( ${price} - ${price} ) + 1"
+    getOne: (value) => "( ${price} - ${price} ) + 1"
 })
 
-interp.interpolate("Computed to: ${ expressions.c }", (value) => math.eval(value) )
+interp.interpolate("Computed to: ${ expressions.c }", (value) => {
+    return math.eval(value)
+})
 // returns "Computed to: 3749"
 ```
 
@@ -58,12 +60,10 @@ class TransInterp extends require('trans-interpolator') {
     depth = 8
 }
 ```
-### INSTALL
-`npm install trans-interpolator` (Browserify friendly)
 
-### API
+## API
 
-#### `class TransInterpolator([data], [[options]])`
+### `class TransInterpolator([data], [[options]])`
 - `data`
     - The data to use when transposing. Can contain expressions itself.
     - When an expression resolves to a function in this object, it will be treated as a `transform` function
@@ -74,7 +74,7 @@ class TransInterp extends require('trans-interpolator') {
     - `transform` A function which can be used mutate each resolved value
 
 
-#### `interpolate([expression], [[transform]])`
+### `interpolate([expression], [[transform]])`
 - `expression {String}`
 - `transform(value, unresolved, expression)`
     - Called when either no open tags are found or when the depth limit is met
