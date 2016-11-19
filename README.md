@@ -11,7 +11,7 @@ const interp = new TransInterpolator({
     ]
 })
 
-interpolator.interpolate("Total: ${ some[0]['!data!'] }.")
+interp.interpolate("Total: ${ some[0]['!data!'] }.")
 // returns "Total: 5000."
 ```
 
