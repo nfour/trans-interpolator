@@ -5,20 +5,21 @@ Combines
 - Recursive string **interpolation**
 
 ```js
-const interp = new TransInterpolator({
+import TransInterp from 'trans-interpolator';
+
+const interp = new TransInterp({
     some: [
         { "!data!": '5000' }
     ]
-})
+});
 
-interp.interpolate("Total: ${ some[0]['!data!'] }.")
+interp.interpolate("Total: ${ some[0]['!data!'] }.");
 // returns "Total: 5000."
 ```
 
 It's also rescursive.
 
 ```js
-import TransInterp from 'trans-interpolator'
 import math from 'mathjs' // http://mathjs.org
 
 const interp = new TransInterp({
@@ -29,18 +30,18 @@ const interp = new TransInterp({
         c: '${expressions.b} - ${getOne}',  // 3749
     },
     getOne: (value) => "( ${price} - ${price} ) + 1"
-})
+});
 
 interp.interpolate("Computed to: ${ expressions.c }", (value) => {
     return math.eval(value)
-})
+});
 // returns "Computed to: 3749"
 ```
 
-It can also be configured in two ways
+It can be configured in two ways:
 
 ```js
-import TransInterp from 'trans-interpolator'
+import TransInterp from 'trans-interpolator';
 
 new TransInterp({ data: 1 }, {
     open: "!!!",
@@ -48,33 +49,38 @@ new TransInterp({ data: 1 }, {
     transform(value, dataKey, expression) {
         return "woo" + value + "woo"
     }
-})
+});
 ```
 
 or
 
 ```js
-class TransInterp extends require('trans-interpolator') {
+import Base from 'trans-interpolator';
+
+export class TransInterp extends Base {
     open = "<%"
     close = "%>"
     depth = 8
-}
+};
+
+const transInterp = new TransInterp({})
 ```
 
 ## API
 
-### `class TransInterpolator([data], [[options]])`
-- `data`
-    - The data to use when transposing. Can contain expressions itself.
-    - When an expression resolves to a function in this object, it will be treated as a `transform` function
-- `options`
-    - `depth = 8` Limit the recursion depth.
-    - `open = "${"` An open tag
-    - `close = "}"` The end tag
-    - `transform` A function which can be used mutate each resolved value
-
-
 ### `interpolate([expression], [[transform]])`
 - `expression {String}`
-- `transform(value, unresolved, expression)`
+- `transform(value, unresolved, expression) { return value; }`
     - Called when either no open tags are found or when the depth limit is met
+    
+### `class TransInterpolator([data], [[options]])`
+- `data`
+    - The data to pull in; can contain expressions of itself.
+    - When an expression resolves to a function, it will be treated just like a `transform` function.
+- `options`
+    - `depth = 8` Limit the recursion depth.
+    - `open = "${"` The open tag
+    - `close = "}"` The end tag
+    - `transform(value, unresolved, expression) {}`
+
+
