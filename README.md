@@ -33,7 +33,7 @@ const interp = new TransInterp({
 });
 
 interp.interpolate("Computed to: ${ expressions.c }", (value) => {
-    return math.eval(value)
+    return math.eval(value);
 });
 // returns "Computed to: 3749"
 ```
@@ -47,7 +47,7 @@ new TransInterp({ data: 1 }, {
     open: "!!!",
     close: "^^^",
     transform(value, dataKey, expression) {
-        return "woo" + value + "woo"
+        return ` :D ${value} :D `;
     }
 });
 ```
@@ -68,12 +68,7 @@ const transInterp = new TransInterp({})
 
 ## API
 
-### `interpolate([expression], [[transform]])`
-- `expression {String}`
-- `transform(value, unresolved, expression) { return value; }`
-    - Called when either no open tags are found or when the depth limit is met
-    
-### `class TransInterpolator([data], [[options]])`
+### class `TransInterpolator([data], [[options]])`
 - `data`
     - The data to pull in; can contain expressions of itself.
     - When an expression resolves to a function, it will be treated just like a `transform` function.
@@ -84,3 +79,8 @@ const transInterp = new TransInterp({})
     - `transform(value, unresolved, expression) {}`
 
 
+### method `.interpolate([expression], [[transform]])`
+- `expression {String}`
+- `transform(value, unresolved, expression) { return value; }`
+    - Called when either no open tags are found or when the depth limit is met
+    
