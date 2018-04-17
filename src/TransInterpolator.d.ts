@@ -22,4 +22,6 @@ declare class TransInterpolator {
     ): string
 }
 
+declare namespace TransInterpolator {}
+
 export = TransInterpolator;
