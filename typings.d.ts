@@ -13,7 +13,7 @@ declare class TransInterpolator {
     depth: IInterpOptions['depth']
     transform: IInterpOptions['transform']
 
-    constructor (data: TransInterpolator['data'], options?: IInterpOptions)
+    constructor (data: TransInterpolator['data'], options?: Partial<IInterpOptions>)
 
     interpolate (
         expression: string,
