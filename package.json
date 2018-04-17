@@ -1,7 +1,7 @@
 {
     "name": "trans-interpolator",
     "description": "String interpolation with variable transposition!",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "author": {
         "name": "nfour"
     },
